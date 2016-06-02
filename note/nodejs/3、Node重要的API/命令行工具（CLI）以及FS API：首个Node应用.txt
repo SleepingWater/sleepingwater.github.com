@@ -1,0 +1,207 @@
+1、创建模板
+在项目中定义package.json，方便对NPM中注册的模板依赖进行管理，也能对模板进行发布
+
+2、同步还是异步
+fs模块是唯一一个同时提供同步和异步API的模块
+var fs = require('fs');
+console.log(require('fs').readdirSync(__dirname));
+异步的版本
+function async(err,files){
+	console.log(files);
+};
+require('fs').readdir('.',async);
+异步，事件驱动模式
+fs.readdir(__dirname,function(err,files){
+	console.log(files);
+});
+
+3、理解什么是流
+process全局对象中包含了三个流对象，分别对应三个UNIX标准流
+stdin：标准输入
+stdout：标准输出
+stderr：标准错误
+简而言之，当涉及持续不断地对数据进行读写时，流就出现了。
+
+var fs = require('fs');
+fs.readdir(process.cwd(),function(err,files){
+	console.log('');
+	if(!files.length){
+		return console.log('	\033[31m No files to show!\-33[39m\n');
+	}
+
+	console.log('	Select which file or directory you want to see\n');
+
+	function file(i){
+		var filename = files[i];
+
+		fs.stat(__dirname + '/' + filename,function(err,stat){
+			if(stat.isDirectory()){
+				console.log('	'+i+'	\33[36m' + filename + '/\033[39m');
+			}else{
+				console.log('	'+i+'	\33[90m' + filename + '\033[39m');
+			}
+
+			i++;
+			if(i == files.length){
+				console.log('');
+				process.stdout.write('	\033[33mEnter your choice: \033[39m');
+				process.stdin.resume();//等待用户输入
+				//process.stdin.setEncoding('utf8');
+			}else{
+				file(i);
+			}
+		});
+	}
+	file(0);
+});
+fs.stat会给出文件或者目录的元数据
+
+4、重构，用fs进行文件操作
+要做重构，我们从几个常用的变量创建快捷变量开始
+var fs = require('fs')
+	,stdin = process.stdin
+	,stdout = process.stdout
+	,stats = []
+	,files
+fs.readdir(process.cwd(),function(err,filestmp){
+	files = filestmp;
+	console.log('');
+	if(!files.length){
+		return console.log('	\033[31m No files to show!\-33[39m\n');
+	}
+
+	console.log('	Select which file or directory you want to see\n');
+	//console.log(typeof files);
+	file(0);
+});
+
+function file(i){
+	var filename = files[i];
+
+	fs.stat(__dirname + '/' + filename,function(err,stat){
+		stats[i] = stat;
+		if(stat.isDirectory()){
+			console.log('	'+i+'	\33[36m' + filename + '/\033[39m');
+		}else{
+			console.log('	'+i+'	\33[90m' + filename + '\033[39m');
+		}
+
+		if(++i == files.length){
+			read();
+			//process.stdin.setEncoding('utf8');
+		}else{
+			file(i);
+		}
+	});
+}
+
+function read(){
+	console.log('');
+	stdout.write('	\033[33mEnter your choice: \033[39m');
+	stdin.resume();
+	stdin.setEncoding('utf-8');
+	//监听data事件
+	stdin.on('data',option);
+}
+
+function option(data){
+	var filename = files[Number(data)];
+	if(!filename){
+		stdout.write('	\033[33mEnter your choice: \033[39m');
+	}else{
+		stdin.pause();
+		data.replace(/(.*)/g,'	$1');
+		if(stats[Number(data)].isDirectory()){
+			//console.log(data);return;
+			fs.readdir(__dirname + '/' + filename,function (err,files){
+				console.log('');
+				//文件夹内文件的数量
+				console.log('	(' + files.length + ' files)');
+				//遍历文件夹内的文件
+				files.forEach(function(file){
+					//console.log('	-	' + file);
+					//读取文件内容
+					fs.readFile(__dirname + '/' + filename + '/' + file,'utf8',function(err,data){
+						console.log('');
+						console.log('\033[90m' + data.replace(/.(.*)/g,'	$1') + '\033[39m');
+					});
+				});
+				console.log('');
+			});
+		}else{
+			//读取文件内容
+			fs.readFile(__dirname + '/' + filename,'utf8',function(err,data){
+				console.log('');
+				console.log('\033[90m' + data.replace(/.(.*)/g,'	$1') + '\033[39m');
+			});
+		}
+	}
+}
+
+5、对CLI一探究竟（学习必要的API）
+argv
+process.argv包含了所有Node程序运行时的参数值
+
+工作目录
+__dirname：获取执行文件时该文件在文件系统中所在的目录（文件所在的目录）
+process.cwd：获取当前工作目录（执行的目录）
+例子：
+在目录E:\node中执行下面代码
+$node file-explorer/index.js
+__dirname：E:\node\file-explorer
+process.cwd()：E:\node
+
+环境变量
+process.env访问shell环境下的变量
+
+退出
+process.exit();
+
+信号
+进程和操作系统进行通信的其中一种方式就是通过信号
+要让进程终止，可以发送SIGKILL信号
+process.on('SIGKILL',function(){
+	//信号已收到
+});
+
+ANSI转义码
+在文本终端控制格式、颜色以及其他输出选项，可以用ANSI转义码
+console.log('\033[90m' + data.replace(/(.*)/g,'	$1') + '\033[39m');
+\033 表示转义开始
+[ 表示颜色开始设置
+90 表示前景色为亮灰色
+m 表示颜色设置结束
+
+6、对fs一探究竟
+fs模块允许你通过Stream API来对数据进行读写操作。与readFile及writeFile方法不同，它对内存的分配不是一次完成的。
+当读取一个很大的文件时，更好的方式应当是一次只读取一块内容，然后逐块进行解析。
+
+Stream
+fs.createReadStream方法允许为一个文件创建一个可读的Stream对象。
+例：
+//回调函数必须要等到整个文件读取完毕、载入到RAM、可用的情况下才会触发
+fs.readFile('my-file.txt',function(){
+	//对文件开始处理
+});
+
+var stream = fs.createReadStream('my-file.txt');
+stream.on('data',function(chunk){
+	//处理文件部分内容
+});
+stream.on('end',function(){
+	//文件读取完毕
+});
+
+监视
+Node允许监视文件或目录是否发生变化。当文件系统中的文件（或者目录）发生变化时，会分发一个时间，然后触发指定的回调函数
+例子：监视文件后缀为.css的文件是否改变
+var fs = require('fs');
+var files = fs.readdirSync(process.cwd());
+files.forEach(function(file){
+	console.log(file);
+	if(/\.css/.test(file)){
+		fs.watchFile(process.cwd() + '/' + file,function (){
+			console.log(' - ' + file + ' has changed');
+		});
+	}
+});

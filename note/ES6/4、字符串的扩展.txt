@@ -1,0 +1,50 @@
+1、字符的Unicode表示法
+
+2、codePointAt()测试一个字符由2个字节还是4个字节组成的最简单的方法
+JavaScript内部，字符以UTF-16的格式储存，每个字符固定为2字节。对于需要4个字节储存的字符，JavaScript会认为它们是2个字符。
+var s = "眭";
+console.log(s.length);//2
+console.log(s.charAt(0));
+console.log(s.charAt(1));
+console.log(s.charCodeAt(0));
+console.log(s.charCodeAt(1));
+
+???JavaScript 字符串length 一个中文是2，一个中文加一个英文也是2
+
+3、String.fromCodePoint()
+
+4、字符串的遍历器接口
+可以使用for...of循环遍历
+for(let codePoint of 'foo'){
+	console.log(codePoint);
+}
+
+5、at()
+可以识别Unicode编号大于0xFFFF的字符
+
+7、includes(),startsWith(),endsWith()
+都是返回布尔值
+这3个方法都支持第二个参数，表示开始搜索的位置
+
+8、repeat()
+返回一个新的字符串，表示将原字符串重复n次
+
+9、padStart(),padEnd()
+字符串补全长度
+'x'.padStart(5,'ab')//'ababx'
+
+10、模板字符串
+function Obj(){};
+Obj.prototype.count = 0;
+var basket = new Obj();
+basket.count=3;
+$('#result').append(`There are ${basket.count} <br />`);
+等价于$('#result').append("There are "+basket.count+"<br />");
+用反引号(`)标识，可以当做普通字符串使用，也可以定义多行字符串，或者在字符串中嵌入变量。
+使用模板字符串，所有的空格和缩进都会被保留在输出中。
+*在${}中可以进行运算，引用对象属性，以及调用函数
+
+11、实例：模板编译
+
+12、标签模板
+过滤HTML字符串，防止用户输入恶意内容

@@ -1,0 +1,42 @@
+1、Array.from()方法用于将两类对象转为真正的数组：类似数组的对象和可遍历对象
+
+2、Array.of()方法将一组值转换为数组
+Array.of(3,11,8) //[3,11,8]
+
+3、copyWithin()
+
+4、数组实例的find()和findIndex()
+find方法用于找出第一个符合条件的数组成员
+[1,4,10,15].find((n)=> n<0)
+// -5
+findIndex方法返回第一个符合条件的数组成员的位置
+[1,5,10,15].findIndex(function(value,index,arr){
+	return value>9;
+})
+// 2
+
+5、数组实例的fill(),使用给定值填充数组
+new Array(3).fill(7)
+//[7,7,7]
+['a','b','c'].fill(7,1,2)//给定值，起始位置，结束位置
+//['a',7,'c']
+
+6、数组实例的entries(),keys(),values()，用于遍历数组
+for(let index of ['a','b'].keys()){
+	console.log(index)
+}
+
+for(let [index,elem] of ['a','b'].entries()){
+	console.log(elem);
+}
+
+7、数组的includes()
+返回布尔值，表示某个数组是否包含给定的值
+[1,2,3].includes(2);//true
+
+8、数组的空位
+数组的空位是指数组的某一个位置没有任何值。比如，Array构造函数返回的数组都是空位
+ES5很多方法都跳过空位
+ES6则明确将空位转为undefined
+
+9、数组推导

@@ -1,0 +1,77 @@
+1、函数参数的默认值
+function log(x,y='world'){
+	console.log(x,y);
+}
+log('hello')//hello world
+
+2、rest参数
+形式为"...变量名"，用于获取函数的多余参数，这样就不需要使用arguments对象了。rest参数搭配的变量是一个数组，该变量将多余的参数放入其中。
+function add(...valuse){
+	let sum = 0;
+	for(var val of valuse){
+		sum += val;
+	}
+	return sum;
+}
+add(2,3,5);//10
+
+*rest参数只能是最后一个参数，否则会报错
+函数length属性不包括rest参数
+
+3、扩展运算符
+...将一个数组转为用逗号分隔的参数序列
+console.log(...[1,2,3]);//1 2 3
+
+(1)替代数组的apply方法
+ES5的写法
+Math.max.apply(null,[14,3,77]);
+ES6的写法
+Math.max(...[14,3,77]);
+等同于
+Math.max(14,3,77);
+
+(2)通过push将一个数组添加到另一个数组的尾部
+var arr1 = [0,1,2];
+var arr2 = [3,4,5];
+arr1.push(...arr2);
+
+(3)合并数组
+var arr1 = [1,2,3];
+var arr2 = [4,5,6];
+var arr3 = [7,8,9];
+[...arr1,...arr2,...arr3]
+
+(4)函数的返回值
+
+(5)字符串
+将字符串转化为真正的数组
+[...'hello']
+//["h","e","l","l","o"]
+正确返回字符串长度可以这样写
+function length(str){
+	return [...str].length;	
+}
+
+(6)类似数组的对象
+任何类似数组的对象都可以通过扩展运算符转为真正的数组
+var nodelist = document.querySelectorAll('div');
+var array = [...nodelist];
+
+(7)Map和Set结构，Generator函数
+let map = new Map([
+	[1,'one'],
+	[2,'two'],
+	[3,'three'],
+]);
+let arr = [...map.keys()];//[1,2,3]
+
+4、name属性
+函数的name属性返回该函数的函数名
+
+5、箭头函数
+ES6允许使用"箭头"(=>)定义函数
+var f = v=>v;
+等同于
+var f = function(v){
+	return v;
+}

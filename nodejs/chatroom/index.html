@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>chat room</title>
+<style type="text/css">
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font: 13px Helvetica, Arial; }
+div { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+div input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+div button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+#messages { list-style-type: none; margin: 0; padding: 0; }
+#messages li { padding: 5px 10px; }
+#messages li:nth-child(odd) { background: #eee; }
+p{padding:5px 10px;}
+</style>
+</head>
+<body>
+<p id="onlineUser">在线人数：0</p>
+<ul id="messages"></ul>
+<div action="">
+		<input id="m" autocomplete="off" /><button>Send</button>
+</div>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+var myName = false;
+var socket = io("http://localhost:3000");
+//监听open事件
+socket.on('open',function(){
+	$("#messages").append($('<li>').text('已连接至服务器，请输入昵称'));
+});
+//监听system事件
+socket.on('system',function(json){
+	var sep=''
+		,onlinehtml=''
+		,onlineUsers=json.onlineUsers
+		,count = json.onlineUserCount;
+	//把用户拼接成一个字符串
+	for(key in onlineUsers){
+		if(onlineUsers.hasOwnProperty(key)){
+				onlinehtml+=sep+onlineUsers[key];
+				sep='、';
+		}
+	}
+
+	if(json.type==='welcome'){
+		$("#messages").append($('<li>').text('Sys('+json.time+')welcome '+json.text));
+		$("#onlineUser").text('在线人数：'+count+'。在线列表：'+onlinehtml);
+	}else if(json.type==='disconnect'){
+		$("#messages").append($('<li>').text('Sys('+json.time+')bye '+json.text+''));
+		$("#onlineUser").text('在线人数：'+count+'。在线列表：'+onlinehtml);
+	}
+});
+//监听chat message事件
+socket.on('chat message',function(json){
+	$("#messages").append($('<li>').text(json.author+'('+json.time+'): '+json.text));
+});
+$('#m').keydown(function(e){
+	if(e.keyCode===13){
+		if(!$("#m").val()) return false;
+		socket.emit('chat message',$("#m").val());
+		//第一次为用户名
+		if(myName===false){
+			myName=$("#m").val();
+		}
+		//重置输入框的值
+		$("#m").val('');
+	}
+});
+</script>
+</body>
+</html>

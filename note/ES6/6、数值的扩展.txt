@@ -1,0 +1,17 @@
+1、Number.isFinite()检查一个数值是否非无穷 Number.isNaN()
+
+2、Number.isInteger()
+判断一个值是否为整数。*在JavaScript内部，整数和浮点数是同样的储存方法，所以3和3.0被视为同一个值
+Number.isInterger(23.0) //true
+
+*JavaScript能够准确表示的整数范围在-2^{53}到2^{53}之间（不含两个端点）
+
+3、Math对象的扩展
+Math.trunc()方法去除一个数的小数部分，返回整数部分。对于空值和无法截取整数的值，返回NaN
+
+Math.sign()
+参数为整数，返回+1
+参数为负数，返回-1
+参数为0，返回0
+参数为-0，返回-0
+其他值，返回NaN

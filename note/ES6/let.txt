@@ -1,0 +1,15 @@
+﻿声明变量let和var的区别
+1、let不存在变量提升。
+2、let具有块级作用域（只在let命令所在的代码块内有效）。
+3、let不允许在相同作用域内重复声明同一个变量。
+4、暂时性死区（temporal dead zone 简称TDZ）
+if(true){
+	//TDZ开始
+	tmp = "abc";
+	console.log(tmp);//ReferenceError
+
+	let tmp;//TDZ结束
+	console.log(tmp);//undefined
+	tmp = 123;
+	console.log(tmp);//123
+}
