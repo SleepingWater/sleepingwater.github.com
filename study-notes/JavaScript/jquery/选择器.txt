@@ -1,0 +1,50 @@
+匹配所有选中的被选中元素(复选框、单选框等，不包括select中的option)
+$("input:checked")
+
+匹配包含给定文本的元素
+$("div:contains('jolin')")
+
+匹配一个给定索引值的元素
+$("tr:eq(1)")
+
+匹配所有索引值为偶数的元素，从 0 开始计数
+$("tr:even")
+匹配所有索引值为奇数的元素，从 0 开始计数
+$("tr:odd")
+
+获取第一个元素
+$('li').first()
+
+匹配第一个子元素,':first' 只匹配一个元素，而此选择符将为每个父元素匹配一个子元素
+$("ul li:first-child")
+
+匹配所有大于给定索引值的元素
+$("tr:gt(0)")
+匹配所有小于给定索引值的元素
+$("tr:lt(2)")
+
+匹配含有选择器所匹配的元素的元素
+$("div:has(p)").addClass("test");
+
+匹配如 h1, h2, h3之类的标题元素
+$(":header").css("background", "#EEE");
+
+匹配所有不可见元素，或者type为hidden的元素
+$("tr:hidden")
+$("input:hidden")
+
+获取最后个元素
+$('li').last()
+
+去除所有与给定选择器匹配的元素
+$("input:not(:checked)")
+
+匹配其父元素下的第N个子或奇偶元素
+':eq(index)' 只匹配一个元素，而这个将为每一个父元素匹配子元素。:nth-child从1开始的，而:eq()是从0算起的！
+$("ul li:nth-child(2)")
+
+如果某个元素是父元素中唯一的子元素，那将会被匹配
+$("ul li:only-child")
+
+匹配所有选中的option元素
+$("select option:selected")

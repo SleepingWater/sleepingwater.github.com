@@ -1,0 +1,10 @@
+﻿--querySelector()方法
+接收一个css选择符，返回与改模式匹配的第一个元素，如果没有找到匹配的元素，返回null
+var myDiv=document.querySelector("#myDiv");
+var selected=document.querySelector(".selected");
+
+--querySelectorAll()方法
+接收的参数与querySelector()方法一样，但返回的是所有匹配的元素而不仅仅是一个元素。返回的是一个NodeList的实例。
+var strongs=document.querySelectorAll("p strong");取得<p>元素中所有的<strong>元素
+
+--matchesSelector()方法

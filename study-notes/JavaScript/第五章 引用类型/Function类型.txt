@@ -1,0 +1,40 @@
+函数实际上是对象。每个函数都是Function类型的实例，而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
+
+-没有重载（深入理解）
+
+-函数声明和函数表达式
+alert(sum(10,10));
+function sum(num1,num2){
+	return num1+num2;
+}
+以上代码可以正常运行。在代码开始执行之前，解析器就已经通过一个名为函数声明提升的过程，读取并将函数声明添加到执行环境中。
+alert(sum(10,10));
+var sum=function(num1,num2){
+	return num1+num2;
+};
+以上代码会在运行期间产生错误
+
+-作为值的函数
+因为ECMAScript中的函数名本身就是变量，所以函数也可以作为值来使用。
+当然，可以从一个函数中返回另一个函数，而且这也是极为有用的一种技术。
+例：根据某个对象属性对数组进行排序
+
+-函数内部属性
+在函数内部，有两个特殊的对象：arguments和this。
+arguments主要用途是保存函数参数，但这个对象还有一个名叫callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数。
+function factorial(num){
+	if(num<1){
+		return 1;
+	}else{
+		return num*arguments.callee(num-1);		//return num*factorial(num-1)
+	}
+}
+caller这个属性中保存着调用当前函数的函数的引用，如果是在全局作用域中调用当前函数，它的值为null。
+
+-函数属性和方法
+ECMAScript中函数是对象，因此函数也有属性和方法
+每个函数都包含两个属性：length和prototype
+length属性表示函数希望接受的命名参数的个数
+prototype是最耐人寻味的
+每个函数都包含两个非继承而来的方法apply()和call(),在特定的作用域中调用函数，实际上等于设置函数体内this对象的值。
+ECMAScript5还定义了一个方法：bind()。这个方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值。

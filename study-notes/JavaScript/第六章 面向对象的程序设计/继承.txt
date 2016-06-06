@@ -1,0 +1,41 @@
+ECMAScript只支持实现继承，而且其实现继承主要是依靠原型链来实现的
+
+--原型链
+基本思路是利用原型让一个引用类型继承另一个引用类型的属性和方法
+1、别忘记默认的原型
+所有引用类型都继承了Object
+2、确定原型和实例的关系
+第一次方式是instanceof操作符
+第二种方式是使用isPrototypeOf()方法
+3、谨慎地定义方法
+4、原型链的问题
+
+--借用构造函数
+
+--组合继承
+使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承
+function SuperType(name){
+	this.name=name;
+	this.color=["red","yellow","blue"];
+}
+SuperType.prototype.sayName=function(){
+	alert(this.name);
+}
+function SubType(name,age){
+	//继承属性
+	SuperType.call(this,name);
+	this.age=age;
+}
+//继承方法
+SubType.prototype=new SuperType();
+SubType.prototype.constructor=SubType;
+SubType.prototype.sayAge=function(){
+	alert(this.age);
+}
+
+--原型式继承
+Object.create();	p170
+
+--寄生式继承
+
+--寄生组合式继承

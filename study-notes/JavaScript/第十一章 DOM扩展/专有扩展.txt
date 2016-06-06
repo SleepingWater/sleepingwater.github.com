@@ -1,0 +1,12 @@
+--文档模式
+
+--children属性
+
+--contains()方法
+
+--插入文本
+1、innerText属性
+2、outerText属性
+
+--滚动
+scrollIntoView()是唯一一个所有浏览器都支持的方法

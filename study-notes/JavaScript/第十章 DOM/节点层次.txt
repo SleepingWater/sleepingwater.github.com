@@ -1,0 +1,111 @@
+--节点层次
+DOM可以将任何HTML或XML文档描绘成一个由多节点构成的结构
+1、node类型
+
+-nodeName和nodeValue属性
+nodeName为元素的标签名
+nodeValue的值始终为空
+
+-节点关系
+父元素，子元素
+每一个节点都有一个childNodes属性，其中保存着一个NodeList对象，NodeList是一种类数组对象。
+我们常说，NodeList是有生命、有呼吸的对象，而不是在我们第一次访问它们的某个瞬间拍摄下来的一张快照
+访问NodeList中的节点--可以通过方括号，也可以使用item()方法
+对arguments对象使用Array.prototype.slice()方法可以将其转换为数组
+
+每一个节点都有parentNode属性，该属性指向文档树中的父节点
+previousSibling 前一个节点
+nextSibling 下一个节点
+firstChild 第一个节点
+lastChild 最后一个节点
+
+hasChildNodes()方法，在节点包含一个或多个子节点的情况下返回true
+
+-节点操作
+最常用的方法appendChild()，用于向childNodes列表的末尾添加一个节点，添加成功后appendChild()返回新增的节点
+如果需要把节点放在childNodes列表中某个特定的位置上，而不是放在末尾，那么可以使用insertBefore()方法。这个方法接受两个参数：要插入的节点和作为参照的节点。如果参照节点是null，则和appendChild()执行相同的操作
+replaceChild()方法接受两个参数，要插入的节点和要替换的节点
+removeChild()方法，移除某个节点
+
+--其他
+cloneNode()方法，用于创建调用这个方法的节点的一个完全相同的节点
+接受一个布尔值参数，true表示是否执行深复制（复制节点及整个子节点树）。false表示浅复制，即只复制节点本身。复制后返回的节点副本属于文档所有。
+
+--Document类型
+
+1、文档的子节点
+DOM标准规定Document节点的子节点可以使DocumentType、Element、ProcessingInstruction或Comment。还有两个内置的访问其子节点的快捷方式。第一个就是documentElement属性，该属性始终指向HTML页面中的<html>元素。另一个就是通过childNodes列表访问文档元素。
+document.body	//取得对<body>的引用
+
+2、文档信息
+//获取文档标题
+var title=document.title;
+document.title="new title";
+//取得完整的URL
+var ur=document.URL;
+//取得域名
+var domain=document.domain;
+//取得来源页面的URL
+var referrer=document.referrer;
+*假设一个页面加载自www.suiyu.com，其中包含一个内嵌框架，框架内的页面加载自cool.suiyu.com。由于document.domain字符串不一样，内外页面之间无法互相访问对方的Js对象。但如果将这两个页面的document.domain值都设置为“suiyu.com”，它们之间就可以通信了。
+注意：浏览器对domain属性还有一个限制，即如果域名一开始是“松散的”（loose），那么不能将他再设置为“紧绷的”（tight）。在将document.domain设置为“suiyu.com”之后，就不能再将其设置回“cool.suiyu.com”。否则将会导致错误。
+
+3、查找元素
+getElementById();如果页面中多个元素的ID值相同，返回文档中第一次出现的元素。
+注意：不让表单字段的name特性与其他元素的ID相同
+getElementsByTagName();返回一个HTMLCollection对象
+getElementsByName();
+
+4、特殊结合
+P258
+document.forms
+document.images
+document.links	//包含文档中所有带hred特性的<a>元素
+
+5、DOM一致性检测
+
+6、文档写入
+将输出流写入网页的能力
+write();writeln();open();close();
+接受一个字符串参数
+使用write()时，字符串"</script>"将被解释为外部的<script>标签匹配，所有要写成"<\/script>"
+
+--Element类型
+1、HTML元素
+2、取得特性
+var div=document.getElementById("myDiv");
+alert(div.getAttribute("id"));
+传递给getAttribute()的特性名和实际的特性名相同，应该传入“class”而非“className”。如果给定的特性名不存在，返回null。
+3、设置特性
+与getAttribute()对应的方法是setAttribute()，接受两个参数：要设置的特性名和值。
+div.setAttribute("class","myDiv");
+或者div.id="myDiv";
+移除属性removeAttribute("class");
+4、attribute属性
+ELement类型是使用attribute属性的唯一一个DOM节点类型。attribute属性中包含一个NamedNodeMap，与NodeList类似，也是一个“动态”的集合。元素的每一个特性都由一个Attr节点表示，每个节点都保存在NamedNodeMap对象中。
+5、创建元素
+var div=document.createELement("div");
+var input=document.createElement("<input type=\"checkbox\">");
+6、元素的子节点
+
+--Text类型
+<div>hello world!</div>
+这个div有一个文本节点，其nodeValue值为"hello world!"
+var textNode = div.firstChild;
+div.firstChild.nodeValue="some other message";
+1、创建文本节点
+var textNode=document.createTextNode("<strong>Hello world!");
+element.appendChild(textNode);
+2、规范化文本节点
+DOM文档中存在相邻的同胞文本节点很容易导致混乱，因为分不清哪个文本表示哪个字符串。
+normalize()，如果在一个包含两个或多个文本节点的父元素上调用normalize()方法，则会将所有文本节点合并成一个节点。
+3、分割文本节点
+splitText()，将一个文本节点分成两个文本节点，从开始到指定位置之前的内容。
+
+--Comment类型
+和Text类似
+
+--CDATASection类型
+--DocumentType类型
+--DocumentFragment类型
+--Attr类型

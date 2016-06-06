@@ -1,0 +1,29 @@
+﻿BOM的核心对象时window。在浏览器中，window对象既是JavaScript访问浏览器窗口的一个借口，又是ECMAScript规定的Global对象。这意味着在网页中定义的任何一个对象、变量和函数，都以window作为其Global对象，因此有权访问praseInt()等方法。
+
+--全局作用域
+所有在全局作用域中声明的变量、函数都会变成window对象的属性和方法。
+差别：定义全局变量不能通过delete操作符删除，而直接在window对象上的定义的属性可以。
+
+尝试方法未声明的变量会抛出异常，但是通过查询window对象，可以知道某个可能未声明的变量是否存在。
+var newValue=oldValue	//这里会抛出错误，因为oldValue未定义
+var newValue=window.oldValue	//不会报错，这是一次属性的查询，newValue的值是undefined
+
+--窗口关系及框架
+--窗口位置
+--窗口大小
+
+--导航和打开窗口
+window.open()方法既可以导航到一个特定的url，也可以打开一个新的浏览器窗口。这个方法接受四个参数：要加载的url、窗口目标、一个特性字符串以及一个表示上新页面是否取代浏览器历史记录中当前加载页面的布尔值。
+window.open("www.suiyu.com","topFrame");	//等同于<a href="www.suiyu.com" target="topFrame"></a>
+
+--间歇调用和超时调用
+JavaScript是一个单线程的解释器
+setTimeout(function(){
+		alert("hello world");
+	},1000);
+
+--系统对话框
+alert()
+confirm()返回一个布尔值。true表示单击了OK，false表示单击了Cancel或者右上角的X按钮
+prompt()方法接受两个参数，要显示给用户的文本提示和文本输入域的默认值（可以是一个空字符串）
+

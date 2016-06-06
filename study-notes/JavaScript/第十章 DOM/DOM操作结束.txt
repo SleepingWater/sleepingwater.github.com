@@ -1,0 +1,19 @@
+--动态脚本
+p277 了解
+function loadScript(url){
+	var script=document.createElement("script");
+	script.type="text/javascript";
+	script.src=url;
+	document.body.appendChild(script);
+}
+
+--动态样式
+原理同上
+
+--操作表格
+p282
+为<table>元素添加的属性和方法
+为<tbody>元素添加的属性和方法
+为<tr>元素添加的属性和方法
+
+--使用nodeList

@@ -1,0 +1,3 @@
+var someDate=new Date(Date.parse("May 25.2004"));
+等价于
+var someDate=new Date("May 25.2004");

@@ -1,0 +1,7 @@
+一个完整的JavaScript实现应该由下列三个不同的部分组成
+核心ECMAScript		由ECMA-262定义，提供核心语言功能
+文档对象模型DOM		提供访问和操作网页内容的方法和接口
+浏览器对象模型BOM	提供与浏览器交互的方法和接口
+
+<script type="..." defer="defer" src="..."></script>
+defer：遇到</html>后才执行

@@ -1,0 +1,15 @@
+创建Object实例有两种
+1、使用new操作符后跟Object构造函数
+var person=new Object();
+2、使用对象字面量
+var person={
+	"name":"suiyu",
+	"sex":"男"		//最后不能写逗号
+}
+或者
+var person={};
+person.name="suiyu";
+person.sex="男";
+
+JavaScript也可以使用方括号来访问对象的属性,
+person["first name"]	//由于存在空格，无法使用点表示法来访问

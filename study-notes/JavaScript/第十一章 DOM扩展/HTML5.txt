@@ -1,0 +1,48 @@
+--与类相关的扩充
+1、getElementByClassName()方法
+//取得所有类中包含“username”和“current”的元素
+var allCurrentUsernames=document.getELementsByClassName("username current");
+//取得ID为“myDiv”的元素中带有类名“selected”的所有元素
+var selected=document.getELementById("myDiv").getElementsByClassName("selected");
+
+2、classList属性
+add(value)
+contains(value),列表中是否存在给定的值
+remove(value)
+toggle(value)，如果列表中已经存在，删除之，不存在，添加之
+
+--焦点管理
+document.activeElement属性，始终引用DOM中当前获得焦点的元素。
+document.hasFocus()方法，确定文档是否获得了焦点
+
+--HTMLDocument的变化
+1、readyState属性
+-loading
+-complete
+if(document.readyState='complete'){
+	//执行操作
+}
+2、兼容模式
+渲染页面的模式有：标准和混杂
+标准模式下，document.compatMode的值等于"CSSlCompat"
+混杂模式下，document.compatMode的值等于"BackCompat"
+3、head属性
+
+--字符集属性
+
+--自定义数据属性
+可以为元素添加非标准的属性，但要添加前缀data-，目的是为元素提供与渲染无关的信息或者提供语义信息。
+<div id="myDiv" data-appId="12345" data-myname="Nicholas"></div>
+var div=document.getElementById("myDiv");
+//取得自定义属性的值
+var appId=div.dataset.appId;
+var myName=div.dataset.myname;
+//设置值
+div.dataset.appId=23456;
+div.dataset.myname="suiyu";
+
+--插入标记
+innerHTML
+outerHTML
+
+--scrollIntoView()方法

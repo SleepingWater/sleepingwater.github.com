@@ -1,0 +1,7 @@
+var i,
+	len,
+	child=element.firstElementChild;
+while(child!=element.lastElementChild){
+		processChild(child);
+		child=child.nextELementSibling;
+}

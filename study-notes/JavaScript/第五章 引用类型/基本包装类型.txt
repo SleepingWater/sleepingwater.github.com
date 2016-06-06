@@ -1,0 +1,42 @@
+﻿引用类型和基本包装类型的主要区别就是对象的生存期
+
+--Boolean类型
+var falseObject=new Blooean(false);
+var result=falseObject && true;		//true
+
+var falseObject=false;
+var result=false && true;			//false
+布尔表达式中的所有对象都会被转换为true
+typeof操作符对基本类型返回“boolean”，而对引用类型返回“object”
+
+--Number类型
+var num=10;
+num.toString(2)			//1010 返回几进制数值的字符串形式
+num.toFixed(2)			//10.00 按照指定的小数位返回数值的字符串表示
+num.toExponential(1)	//1.0e+1 返回指数表示法（也称e表示法）表示的数值的字符串形式
+num.toPrecision(1)		//1e+1 返回最合适的格式 参数表示数值的所有数字的位数
+
+与Boolean类似，不建议直接实例化Number类型，原因与显示创建Boolean对象一样
+var numberObject=new number(10);	//object
+var numberValue=10;					//number
+
+--String类型
+String类型是字符串的对象封装类型
+1、字符方法
+var stringValue="hello world";
+stringValue.charAt(1);		//e
+stringValue.charCodeAt(1);	//101 字符编码
+2、字符串操作方法
+concat()，用于将一或多个字符串拼接起来，返回拼接得到的新字符串
+var a="hello ";
+var result=a.concat("world","!");		//hello world!
+slice(),substr(),substring();//返回被操作字符串的一个子字符串，参数有区别
+3、字符串位置方法
+indexOf(),lastIndexOf();
+4、trim()方法
+删除前置及后缀的所有空格
+5、字符串大小写
+6、字符串的模式匹配方法
+7、localeCompare()方法	//比较两个字符串
+8、fromCharCode()方法	//接受一个或多个字符编码，然后将他们转换成一个字符串
+

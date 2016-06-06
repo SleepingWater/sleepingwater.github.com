@@ -1,0 +1,50 @@
+定义函数有两种方式：函数声明（重要特性：函数声明提升）和函数表达式
+
+--递归
+
+--闭包
+闭包是指有权访问另一个函数作用域中的变量的函数
+
+--闭包与变量
+p181
+
+--关于this对象
+匿名函数的执行环境具有全局性，因此其this对象通常指向window
+
+--内存泄漏
+在IE较早的版本，如果闭包的作用域链中保存着一个HTML元素，那么就意味着该元素将无法销毁
+function assignHandler(){
+	var element=docment.getElementById("someElement");
+	element.onclick=function(){
+		alert(element.id);
+	}
+}
+由于匿名函数保存了一个对assigneHandler()的活动对象的引用，因此就会导致无法减少element的引用数。
+p184
+
+--模仿块级作用域
+function outputNumbers(count){
+	for(var i=0;i<count;i++){
+		alert(i);
+	}
+	alert(i);	//计数
+}
+用作块级作用域（通常称为私有作用域）
+(function(){
+	//这里是块级作用域
+})();
+例子：
+function outputNumbers(count){
+	(function(){
+		for(var i=0;i<count;i++){
+			alert(i);
+		}
+	})();
+	alert(i);	//导致一个错误
+}
+
+--私有变量
+有权访问私有变量和私有函数的共有方法称为特权方法。
+1、静态私有变量
+2、模块模式
+3、增强的模块模式

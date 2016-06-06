@@ -1,0 +1,33 @@
+﻿面对对象（Oject-Oriented,OO）的语言有一个标志，那就是她们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。
+ECMAScript中没有类的概念，因此它的对象也与基本类的语言中的对象有所不同
+ECMA-262把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数”
+
+--属性类型
+ECMAScript中有两种属性：数据属性和访问器属性
+1、数据属性	p140
+2、访问器属性 	p141
+常见方式：设置一个属性会导致其它属性发现变化
+
+-定义多个属性
+Object.defineProperties(book,{
+	_year:{
+		value:2004
+	},
+	edition:{
+		value:1
+	},
+	year:{
+		get:function(){
+			return this._year;
+		},
+		set:function(newValue){
+			if(newValue){
+				this._year=newValue;
+				this.edition+=newValue-2004;
+			}
+		}
+	}
+});
+
+--读取属性的特性
+Object.getOwnPropertyDescriptor(book,"year");

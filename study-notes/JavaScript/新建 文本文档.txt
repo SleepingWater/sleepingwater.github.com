@@ -1,0 +1,1 @@
+.bashrc¿Ô√Ê alias box='ssh -p 29622 180.96.7.121';

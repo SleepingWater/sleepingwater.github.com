@@ -1,0 +1,5 @@
+--UI事件
+1、load事件
+EventUtil.addHandler(window,"load",function(event){
+	alert("Loaded");
+});

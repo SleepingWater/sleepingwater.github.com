@@ -1,0 +1,13 @@
+﻿location是最有用的BOM对象之一。它既是window对象的属性，也是docunment对象的属性
+
+--查询字符串参数
+location.search返回从问号到URL末尾的所有内容
+
+--位置操作
+window.location="suiyu.com"
+location.href="suiyu.com"
+location.assign("suiyu.com")
+这三行代码效果一样
+
+location.reload()	//重新加载（有可能重缓存中加载）
+locatiobn.reload(true)	//重新加载（从服务器重新加载）
