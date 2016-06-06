@@ -1,9 +1,0 @@
-static
-logger
-query
-body parser
-cookie
-session
-Redis session
-methodOverride
-basicAuth
