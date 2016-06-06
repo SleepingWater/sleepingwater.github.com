@@ -1,0 +1,5 @@
+﻿字典是一种以键值对形式存数数据的数据结构。
+Dictionary的基础是Array类，而不是Object。
+function Dictionary(){
+	this.datastore = new Array();
+}

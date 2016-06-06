@@ -1,0 +1,29 @@
+var isAdding = false;
+function checkPhoto(gid){
+	if(isAdding){
+		return false;
+	}
+	$.ajax({
+        		type: "post",
+		url: "./sub/report_failed.php",
+		data:'gid='+gid+'&rnd='+Math.random(),
+		error: function() {
+			alert('亲，网络超时啦~请稍后再试');
+			isAdding = false;
+		},
+		timeout:20000,
+		beforeSend: function() {
+			$("#dealing").show();
+			isAdding = true;
+		},
+		success: function(data) {
+			$("#dealing").hide();
+			if(data==3){
+				alert("请选择一个试用活动！");
+			}else{
+				alert(data);
+			}	
+			isAdding = false;
+		}
+	});
+}

@@ -1,0 +1,17 @@
+﻿
+树由一组以边连接的节点组成。
+一棵树最上面的节点称为根节点， 如果一个节点下面连接多个节点， 那么该节点称为父节点， 它下面的节点称为子节点。 一个节点可以有 0 个、 1 个或多个子节点。 没有任何子节点的节点称为叶子节点。
+
+二叉树和二叉查找树
+二叉树的每个节点的子节点不允许超过两个
+父节点，左节点，右节点
+
+function Node(data,left,right){
+	this.data = data;
+	this.left = left;
+	this.right = right;
+	this.show = show;
+}
+function show(){
+	return this.show;
+}

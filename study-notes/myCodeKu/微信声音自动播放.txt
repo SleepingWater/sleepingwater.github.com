@@ -1,0 +1,3 @@
+document.addEventListener("WeixinJSBridgeReady", function() {
+	 µ÷ÓÃ²¥·Å
+});

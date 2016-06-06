@@ -1,0 +1,8 @@
+
+兼容安卓大屏浏览器样式特殊处理：
+@media screen and (min-width:321px){}
+兼容iphone4：
+@media screen and (max-height:480px){ }
+
+@media screen and (max-width:320px){
+}

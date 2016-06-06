@@ -1,0 +1,67 @@
+﻿栈是一种特殊的列表， 栈内的元素只能通过列表的一端访问， 这一端称为栈顶。栈被称为一种后入先出（ LIFO， last-in-first-out） 的数据结构。
+
+1、对栈的操作
+入栈push()
+出栈pop()
+peek()返回栈顶元素
+
+2、栈的实现
+function Stack(){
+	this.dataStore = [];
+	this.top = 0;//指向下一个位置
+	this.push = push;
+	this.pop = pop;
+	this.peek = peek;
+	this.clear = clear;
+	this.length = length;
+}
+function push(element){
+	this.dataStore[this.top++] = element;
+}
+function pop(){
+	return this.dateStore[--this.pop]
+}
+function peek(){
+	return this.dataStore[this.pop-1];
+}
+function clear(){
+	thi.top = 0;
+}
+function length(){
+	return this.top;
+}
+
+3、应用
+
+(1)、数制之间的转换
+function mulBase(num,base){
+	var s = new Stack();
+	do{
+		s.push(num % base);
+		num = Math.floor(num /= base);
+	}while(num>0);
+	var res = "";
+	while(s.length>0){
+		res += s.pop();
+	}
+	return res;
+}
+把2345转化为二进制
+mulBase(2345,2);
+
+(2)、回文
+function isPalindrome(word){
+	var s = new Stack();
+	for(var i=0;i<word.length;i++){
+		s.push(word[i]);
+	}
+	var rword = "";
+	while(s.length()>0){
+		rword = s.pop();
+	}
+	if(word == rword){
+		return true;
+	}else{
+		return false;
+	}
+}

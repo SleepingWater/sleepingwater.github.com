@@ -1,0 +1,85 @@
+﻿集合是一种包含不同元素的数据结构。
+集合的特性：(1)集合中的成员是无序的；(2)集合中不允许相同的成员存在。
+1、集合的定义、操作和属性
+定义
+(1)、不包含任何成员的集合称为空集，全集则是包含一切可能成员的集合。
+(2)、如果两个集合的成员完全相同，则称两个集合相等
+(3)、如果一个集合中所有的成员都属于另一个集合，则前一集合称为后一集合的子集。
+操作
+并集
+交集
+补集
+
+2、Set类的实现
+function Set(){
+	this.dataStore = [];
+	this.add = add;
+	this.remove = remove;
+	this.size = size;
+	this.union = union;
+	this.intersect = intersecet;
+	this.subset = subset;
+	this.difference = difference;
+	this.show = show;
+}
+function add(data){
+	if(this.dataStore.indexOf(data)<0){
+		this.dataStore.push(data);
+		return true;
+	}else{
+		return false;
+	}
+}
+function remove(data){
+	var pos = this.dataStore.indexOf[data];
+	if(pos > -1){
+		this.dataStore.splice(pos,1);
+		return true;
+	}else{
+		return false;
+	}
+}
+function show(){
+	return this.dataStore;
+}
+检查一个成员是否属于该集合
+function contains(data){
+	if(this.dataStore.indexOf(data)>-1){
+		return true;
+	}else{
+		return false;
+	}
+}
+并集union
+function union(set){
+	var tmpSet = new Set();
+	for(var i=0;i<this.dataStore.length;i++){
+		tmpSet.add(this.dataStore[i]);
+	}
+	for(var i=0;i<set.length;i++){
+		if(!tmpSet.contains(set[i])){
+			tmpSet.add(set[i]);
+		}
+	}
+	return tmpSet;
+}
+交集
+function intersect(set){
+	var tmpSet = new Set();
+	for(var i=0;i<this.dataStore.length;i++){
+		if(set.contains(this.dataStore[i])){
+			tmpSet.add(set[j]);
+		}
+	}
+	return tmpSet;
+}
+补集
+function difference(set) {
+	var tempSet = new Set();
+	for (var i = 0; i < this.dataStore.length; ++i) {
+		if (!set.contains(this.dataStore[i])) {
+			tempSet.add(this.dataStore[i]);
+		}
+	}
+	return tempSet;
+}

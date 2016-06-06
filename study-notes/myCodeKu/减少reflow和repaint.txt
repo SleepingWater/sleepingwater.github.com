@@ -1,0 +1,16 @@
+﻿减少reflow和repaint
+
+1、不要一条一条地修改DOM的样式，与其这样不如先定义class，到时候修改className
+
+2、把DOM离线后修改。如：
+a、使用documentFragment对象在内存里操作DOM
+b、先把DOM给dispkay:none（有一次reflow），然后进行修改，比如修改100次，再把它显示出来
+c、clone一个DOM节点到内存，改完后替换线上的
+
+3、不要把DOM结点的属性值放在一个循环里当成循环里的变量。
+
+4、尽可能的修改层级比较低的DOM。当然，改变层级比较底的DOM有可能会造成大面积的reflow，但是也可能影响范围很小。
+
+5、为动画的HTML元件使用fixed或absoult的position，那么修改他们的CSS是不会reflow的。
+
+6、千万不要使用table布局。因为可能很小的一个小改动会造成整个table的重新布局。

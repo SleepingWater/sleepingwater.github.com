@@ -1,0 +1,3 @@
+$fp = fopen($address,'w+');//打开文件
+fwrite($fp,$data);//写入文件
+fclose($fp);//关闭文件

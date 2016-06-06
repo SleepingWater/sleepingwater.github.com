@@ -1,0 +1,48 @@
+﻿队列是一种列表， 不同的是队列只能在队尾插入元素， 在队首删除元素。 先进先出。
+
+1、对队列的操作
+入队、出队
+读取对头的元素peek()
+length属性
+clear()方法
+
+2、用数组实现的队列
+function Queue(){
+	this.dataStore = [];
+	this.enqueue = enqueue;
+	this.dequeue = dequeue;
+	this.front = front;
+	this.back = back;
+	this.toString = toString;
+	this.empty = empty;
+}
+function enqueue(element){
+	this.dataStore.push(element);
+}
+function dequeue(){
+	retuen this.dataStore.shift();
+}
+function front(){
+	return this.dataStore[0];
+}
+function back(){
+	return this.dataStore[this.dataStore.length-1]
+}
+function toString(){
+	var str = "";
+	for(var i=0;i<this.dataStore.length;i++){
+		str += this.dataStore[i] + "\n";
+	}
+	return retStr;
+}
+function empty(){
+	if(this.dataStore.length == 0){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+3、使用队列对数据进行排序
+
+4、优先队列

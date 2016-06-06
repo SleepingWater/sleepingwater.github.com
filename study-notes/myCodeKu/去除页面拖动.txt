@@ -1,0 +1,1 @@
+document.ontouchmove = function(e){e.preventDefault();};//È¥³ıÒ³ÃæÍÏ¶¯

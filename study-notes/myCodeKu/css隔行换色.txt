@@ -1,0 +1,8 @@
+p:nth-child(odd)ÆæÊý
+{
+	background:#ff0000;
+}
+p:nth-child(even)Å¼Êý
+{
+	background:#ff0000;
+}

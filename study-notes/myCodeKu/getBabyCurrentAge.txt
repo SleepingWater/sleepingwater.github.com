@@ -1,0 +1,53 @@
+function getBabyCurrentAge($birthday,$edate){
+	$birthtime = strtotime($birthday);
+	$nowtime = strtotime($edate);
+	$result=array();
+	
+	if(empty($birthtime) or empty($nowtime)) {
+		return '';
+	}else if($nowtime+3600*24*280<$birthtime) {//宝宝生日超过280天，尚未备孕
+		$result['types']=3;
+		$result['num']=0;
+		$result['str']='备孕中';
+	}else if($nowtime<$birthtime){
+		$total_day=280-floor(($birthtime-$nowtime)/86400);
+		$week=floor($total_day/7);
+		$left_day=$total_day%7;
+		$result['types']=2;
+		$result['num']=$total_day;
+		$result['str']='孕'.($week>0 ? $week.'周':'').($left_day>0 ? $left_day.'天':'');
+	}else{
+		$total_day=floor(($nowtime-$birthtime)/86400);
+		$now_year = date('Y', $nowtime);
+		$now_month = date('n', $nowtime);
+		$now_day = date('j', $nowtime);
+		$birth_year = date('Y', $birthtime);
+		$birth_month = date('n', $birthtime);
+		$birth_day = date('j', $birthtime);
+		
+		$total_months=($now_year-$birth_year)*12+($now_month-$birth_month);
+		$year=floor($total_months/12);
+		$month=$total_months%12;		
+		if($now_day>=$birth_day && $year>=0 && $month>=0){
+			$day=$now_day-$birth_day;
+		}else if($now_day<$birth_day && $year>0 && $month==0){
+			$year=$year-1;
+			$month=11;
+			$day=date('t',$birthtime)-($birth_day-$now_day);
+		}else{
+			$month=$month-1;
+			$day=date('t',$birthtime)-($birth_day-$now_day);	
+		}
+		$day=$day+1;
+		if($year>0){
+			$day=0;	
+		}
+		$result['types']=1;
+		$result['num']=$total_day;
+		$result['year']=$year;
+		$result['month']=$month;
+		$result['day']=$day;
+		$result['str']=($year>0 ? $year.'岁':'').($month>0 ? $month.'个月':'').($day>0 ? $day.'天':'');
+	}
+	return $result;
+}

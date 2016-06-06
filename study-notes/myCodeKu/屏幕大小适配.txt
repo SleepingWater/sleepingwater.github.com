@@ -1,0 +1,7 @@
+<script language="javascript">
+var phoneWidth = parseInt(window.screen.width);
+var iwidth = 750;
+var phoneScale = phoneWidth/iwidth;
+var ua = navigator.userAgent;
+if (/Android (\d+\.\d+)/.test(ua)){var version = parseFloat(RegExp.$1);	if(version>2.3){document.write('<meta name="viewport" content="width='+iwidth+', minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');}else{	document.write('<meta name="viewport" content="width='+iwidth+', target-densitydpi=device-dpi">');}} else {document.write('<meta name="viewport" content="width='+iwidth+', user-scalable=no, target-densitydpi=device-dpi">');}
+</script>

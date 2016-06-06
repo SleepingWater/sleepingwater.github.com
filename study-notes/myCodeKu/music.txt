@@ -1,0 +1,52 @@
+﻿//音频载入
+	!function(){
+		var audio = null;
+		var audioSrc = fileMp3;
+
+		var firstPlayedAudio = false; // 解决safari播放问题
+		var audioLoaded = false;
+		
+		loadAudio();
+		playAudio();
+
+		$('body').on('touchmove', function(e){ // 如果没有播放过 , 则自动播放
+			e.preventDefault();
+			e.stopPropagation();
+			if(!firstPlayedAudio){
+				firstPlayedAudio = true;
+				audio.play();
+			}
+		});
+
+		function loadAudio(){ // 加载
+			audio = document.createElement('audio');
+			audio.src = audioSrc;
+			audio.preload = 'auto';
+			audio.autoplay = true;
+		 
+			$(audio).on('loadeddata', function(){
+				audioLoaded = true;
+				playAudio();
+				
+				//所有内容加载完成，载入页面
+				$("body").css("background",'#fff');
+				$("#container").height(document.body.scrollHeight).show();
+				$("#progress").hide();
+				//载入微信分享配置
+				loadLove();
+	            callWeiXin();
+			});    
+		}
+
+		function pauseAudio(){ // 停止
+			audio.pause();
+		}
+
+		function playAudio(){ // 继续播放
+			audio.play();
+		}
+
+		document.addEventListener("WeixinJSBridgeReady", function() {
+			playAudio();
+		});
+	}();

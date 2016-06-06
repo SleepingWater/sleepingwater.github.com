@@ -1,0 +1,38 @@
+function getExcelByArray($arr,$filename="数据导出")
+{
+	$file_name=$filename.'.csv';
+	$filename=iconv("utf-8","gbk",$file_name);
+	header("<meta http-equiv=\"content-type\" content=\"text/html;charset=uft-8\">");
+	header("Content-Type: application/vnd.ms-excel");
+	header("Expires:0");
+	header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	header("content-disposition: attachment;filename={$file_name}");
+	
+	header( "Cache-Control: public" );
+	header( "Pragma: public" );
+	header( "Content-type: text/csv" ) ;
+	header( "Content-Dis; filename={$file_name}" ) ;
+	
+	
+	foreach($arr as $k=>$v)
+	{
+		$detail="";
+		$key=array_keys($v);
+		if($k==0)
+		{
+			for($i=0;$i<count($key);$i++)
+			{
+				$detail.=$key[$i].",";
+			}
+			$detail.="\n";
+		}
+		for($i=0;$i<count($key);$i++)
+		{
+			$detail.=$v[$key[$i]].",";
+		}
+		$detail.="\n";
+		//wangwei:修正了特殊字符截断问题，对特殊字符转码进行忽略
+		$detail=iconv("utf-8","gbk//IGNORE",$detail);
+		echo $detail;
+	}
+}
