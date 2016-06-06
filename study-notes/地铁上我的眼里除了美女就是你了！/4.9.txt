@@ -1,0 +1,7 @@
+1、bgOpacity:0.9 接近透明
+2、$("#tip").html("Hello World").css
+3、imagechar() 将字符串 c 的第一个字符画在 image 指定的图像中，其左上角位于 x，y（图像左上角为 0, 0），颜色为 color。如果 font 是 1，2，3，4 或 5，则使用内置的字体（更大的数字对应于更大的字体）。
+4、imagestring() 用 col 颜色将字符串 s 画到 image 所代表的图像的 x，y 坐标处（这是字符串左上角坐标，整幅图像的左上角为 0，0）。如果 font 是 1，2，3，4 或 5，则使用内置字体。
+5、rand(min,max) 返回随机整数，包括min,max
+6、header("Content-type: image/png"); 
+7、imageline() 用 color 颜色在图像 image 中从坐标 x1，y1 到 x2，y2（图像左上角为 0, 0）画一条线段。

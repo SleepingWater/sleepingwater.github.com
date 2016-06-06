@@ -1,0 +1,3 @@
+1、xheditor
+
+2、sql语句  能用php处理的逻辑都用php处理（1）不能用not，像not in , not like , not exist（2）不能用left（3）limit 的估值最大为100~200（4）分页显示，当页数较大时会卡，末页内容用伪内容

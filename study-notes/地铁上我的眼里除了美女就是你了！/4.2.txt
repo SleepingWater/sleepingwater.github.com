@@ -1,0 +1,3 @@
+$xmlrpc_client_msg = new xmlrpc_client('http://baby.ci123.com/rpc/quanquan_server.php','app_com'); ∂¡»°ª∫¥Ê
+$beiyunkey="qzone_qq_article_result";
+$article=M::get($beiyunkey);

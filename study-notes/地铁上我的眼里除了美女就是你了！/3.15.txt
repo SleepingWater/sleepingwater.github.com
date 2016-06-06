@@ -1,0 +1,31 @@
+1、COOKIE
+设置cookie setcookie('键','值',time()+3*86400,'/',域名)
+清除cookie time()-1;
+2、AJAX
+创建XMLHttpRequest()对象
+IE6 if(window.ActiveXObject){
+	myReq=new ActiveXObject("Microsoft.XMLHttp"); 
+	}
+非IE if(window.XMLHttpRequest){
+	myReq=new XMLHttpRequest();
+	}
+
+XMLHttpRequest()对象的属性
+.open("post",url,true)
+.onreadystatechange
+.send()
+3、js改变样式class
+document.getElementById("").className=""
+4、placeholder
+*5、去空格 var email=log_form.email.value.replace(/^\s+|\s+$/g,'');
+6、sql写完别忘了要不要limit 1哦
+7、乱码问题：header("Content-type:text/html;charset=utf-8");
+8、获取当前时间
+date_default_timezone_set("PRC");
+$time = date("Y-m-d H:i:s");
+9、js获取当前页面的url：document.location.href
+10、$post_id=mysql_insert_id();//读取最后一次插入的数据的id
+11、获取今日发帖总数 select count(id) as num from `posts` where `dated`>time limit 1
+12、缓慢移动背景transition:background 0.3s cubic-bezier(0.17, 0.67, 0.88, 1.25) 0s, color 0.2s linear 0s;}
+13、背景位置设置{background-position:0 -40px;}
+

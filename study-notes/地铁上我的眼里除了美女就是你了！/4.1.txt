@@ -1,0 +1,11 @@
+1、Jquery的Ajax：$.post(URL,data,callback);
+
+2、使用PHP的cURL库可以简单和有效地去抓网页
+curl_setopt — 设置一个cURL传输选项
+
+file_get_contents也可以抓取数据
+
+3、preg_match_all		搜索所有
+	preg_match	搜索到一个就停止
+
+4、urlencode — 编码 URL 字符串

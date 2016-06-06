@@ -1,0 +1,9 @@
+1、css ，公用的就放入style.css文件里面
+2、html中不写sql 所有数据在最上面循环装好 $post[$k]['nickname'] = $user['nickname']
+3、sql语句中数字类型不用加单引号，字符类型记得要加单引号
+4、<?php echo 'class="grey"';?>
+5、时期用dated不用time
+*6、页面一定要整齐，标签对齐，消除空格
+7、临时性的对象命名用很简单的字母
+8、防止sql注入：判断是否为纯数字
+$current=isset($_GET['current'])?intval($_GET['current']):1; 

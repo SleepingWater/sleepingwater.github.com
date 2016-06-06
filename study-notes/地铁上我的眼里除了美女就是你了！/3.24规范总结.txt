@@ -1,0 +1,32 @@
+1、include_once('./../..') 加上once 括号不能少
+2、创建对象都写在前面  接受值的时候数字前加intval防止sql注入
+3、设置php默认时间的时区，php.ini文件中， date.timezone = Asia/Shanghai （前面的分号是注释的意思）
+4、回家后记得改setcookie中的域名
+5、setcookie前不能有输出；清楚cookie：setcookie('BBS_INFO','',time()-1,'/');
+6、命名：uid pid 尽量简单
+7、暂时性变量命名要简介 一般就一个字母
+8、sql语句 字段名加点``；php的变量要加单引号和大括号'{}
+9、计算总数时用count(*)
+10、取值时不能用select * from
+11、limit后面的变量不要加单引号，但是要加大括号；取一个数据时后面加上limit 1
+12、html中不写sql，所有数据在上面的php中遍历装起来
+$names[$k]['nickname']=$tm['nickname'];
+13、<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="./styles/css/common.css" rel="stylesheet" type="text/css"/>
+ 	rel 属性用于指定当前文档与被链接文档的关系
+14、style 元素位于 head 部分中，type 属性是必需的，定义 style 元素的内容。唯一可能的值是 "text/css"
+15、html标签对齐 消除空格
+16、table中的td不要定义height
+17、php语句结束时写； <?php echo $name['nickname'];?>
+18、<?php echo 'class="on"'?>
+19、js获取当前页面url:document.location.href
+20、字符串发生变化是触发时间 oninput=""
+placeholder=""
+21、>符号在html中用&gt
+22、不要用多于的div
+23、日期用dated不用time来命名
+24、selected=selected和checked
+25、$post_id=mysql_insert_id();//读取最近一次插入的数据的id
+26、Header("Location: $url");  需要alert提示时可用js的window.location.href=""
+27、页面出现乱码 在php文件前加header("Content-type:text/html;charset=utf-8");
+28、上传图片 图片名出现乱码，由于apache用gb3212编码$upfile=iconv("UTF-8","gb2312", $upfile);

@@ -1,0 +1,12 @@
+$('#target').Jcorp(
+{
+	onChange:
+	onSelect:
+	bgColor:
+	bgOpacity:
+	allowResize:
+	allowRatio:
+	aspectRadio:
+	setSelect(array):
+}
+)

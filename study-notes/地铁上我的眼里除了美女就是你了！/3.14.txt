@@ -1,0 +1,9 @@
+1、php获取当前时间
+date_default_timezone_set("PRC");
+$time = date("Y-m-d H:i:s");
+2、text-indent设置抬头距离
+3、letter-spacing来设置字与字间距_字符间距离，字体间距css样式
+4、border-radius 
+5、vertical-align
+6、text-decoration
+7、autocomplete="on" 自动完成允许浏览器预测对字段的输入。当用户在字段开始键入时，浏览器基于之前键入过的值，应该显示出在字段中填写的选项。

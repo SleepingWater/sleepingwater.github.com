@@ -1,0 +1,58 @@
+	<?php
+echo $_FILES['userfile']['error'];
+$upfile='../uploads/'.$_FILES['userfile']['name'];
+function cut_photo($old_src,$new_src,$new_height,$new_width,$rate=100)
+{
+	$old_info=getimagesize($old_src);
+	switch($old_info[2]){
+		case 1:$img = imagecreatefromgif($old_src);break;
+		case 2:$img = imagecreatefromjpeg($old_src);break;
+		case 3:$img = imagecreatefrompng($old_src);break;
+		case 4:$img = imagecreatefromjpeg("/img/swf.jpg");break;
+		case 6:return false;
+	}
+	if(!$img) return 2;
+	$old_width=imagesx($img);
+	$old_height=imagesy($img);
+	if($old_height<$new_height&&$old_width<$new_width)
+	{
+		imagejpeg($img,$new_src,$rate);
+		imagedestroy($img);
+		$final_img=$img;
+		return 1;
+	}
+	$x_rate=$old_width/$new_width;
+	$y_rate=$old_height/$new_height;
+	if($x_rate<$y_rate){
+		$dst_x = ceil($old_width/$y_rate);
+		$dst_y = $new_height-1;
+		$new_start_x = 0;
+		$new_start_y = 0;
+	}else{
+		$dst_x = $new_width;
+		$dst_y = ceil($old_height/$x_rate);
+		$new_start_x = 0;
+		$new_start_y = 0;
+	}
+	
+	$new_img=imagecreatetruecolor($dst_x, $dst_y);//创建新图像
+	$bg=imagecolorallocate($new_img, 255, 255, 255);
+	imagefilledrectangle($new_img, 0, 0, $dst_x, $dst_y, $bg);//创建一个矩形背景
+	imagecopyresampled($new_img, $img, 0, 0, 0, 0, $dst_x, $dst_y, $old_width, $old_height);
+	$cut_img=imagecreatetruecolor($dst_x,$dst_y);//对图像进行截图
+	imagecopyresampled($cut_img,$new_img,0,0,$new_start_x,$new_start_y,$new_width,$new_height,$new_width,$new_height);
+	imagejpeg($cut_img,$new_src,$rate);//对图像进行截图
+	imagedestroy($img);
+	imagedestroy($new_img);
+	$a=imagedestroy($cut_img);
+	if($a){
+		$final_img=$cut_img;
+		return 1;
+	}else{
+		return 3;
+	}
+}
+$upfile=iconv("UTF-8","gb2312", $upfile);
+cut_photo($_FILES['userfile']['tmp_name'], $upfile, 99, 99);
+$upfile=iconv("gb2312","UTF-8", $upfile);
+ ?>

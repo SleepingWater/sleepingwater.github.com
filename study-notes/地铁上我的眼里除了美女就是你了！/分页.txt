@@ -1,0 +1,36 @@
+<?php
+function getPage($total,$page,$limit,$param=null){
+	$total_page=ceil($total/$limit);
+	$start_page=$page-3;
+	$end_page=$page+5;
+	if($start_page<1){
+		$start_page=1;
+	}
+	
+	if($end_page>$total_page){
+		$end_page=$total_page;
+	}
+	if($total>$limit){
+	$html="<div class=\"page clearfix\"><a href=\"?page=1{$param}\" target=\"_self\">��ҳ</a> ";
+	
+	for($pg=$start_page;$pg<=$end_page;$pg++){
+		if($page==$pg){
+			$html.="<a href=\"#\" class=\"on\">{$pg}</a> ";
+		}else{
+			$html.="<a href=\"?page={$pg}{$param}\" target=\"_self\">{$pg}</a> ";
+		}
+	}
+	$npage=$page+1;
+	$html.="<a href=\"?page={$total_page}{$param}\" target=\"_self\">ĩҳ</a>";
+	if($npage<=$total_page){
+		$html.="<a href=\"?page={$npage}{$param}\" target=\"_self\">��һҳ</a> ";
+	}
+	//$html.="";
+	$html.='</div>';
+	}else
+	{
+		$html="";
+	}
+	return $html;
+}
+?>

@@ -1,0 +1,15 @@
+1、等比例缩图
+2、上传的文件名乱码问题：Apache使用gb2312编码
+$upfile=iconv("UTF-8","gb2312", $upfile); 先把UTF-8转变为gb2312；然后再转回UTF-8
+3、getimagesize()  获取图片信息  
+	0是宽度 
+	1是高度 
+	2是类型（1：gif	2：jpeg	3：png	4：jpeg("/img/swf.jpg")） 	6：false
+	3是width="350" height="318"
+4、imagecreatetruecolor()创建一个图像，在改变背景颜色时需要用imagefill()来填充
+      imagecreate()需要用imagecolorAllocate()添加背景色
+5、imagecreatetruecolor()//新建一个真彩色图像，返回一个图像标识符，代表了一幅大小为 x_size 和 y_size 的黑色图像。
+6、imagecolorallocate()//为一幅图像分配颜色
+7、imagefilledrectangle()//画一矩形并填充
+8、imagecopyresampled()//重采样拷贝部分图像并调整大小
+9、imagejpeg()imagejpeg() 从 image 图像以 filename 为文件名创建一个 JPEG 图像。

@@ -1,0 +1,2 @@
+1、svn 写一个test.php做测试，先add后再commit
+2、删除一个test.php，右键svn里有个delete，然后再svn up test.php 

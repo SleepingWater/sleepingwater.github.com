@@ -1,0 +1,107 @@
+一，命名规范
+1、变 量
+ a，普通变量：小写字母，字母之间使用下划线隔开
+　　如： $new_list_array 、$date_str（形容词+名词+类型)
+  除foreach 中循环临时变量命名使用单个字母以外，变量命名请不要使用单个字母。
+ b，全局变量： 以"g_" 开头 
+　　如：global  $g_db;
+ c，常 量：全部为大写字母，字母之间用下划线隔开
+　　如：define('BD_ROOT', dirname(__FILE__));
+ 
+2、函 数
+   使用驼峰命名法(Camel命名法)：第一个单词首字母小写，其它字母首字母大写，
+　　 如：makeTextPNG()  、 getImage()（动词+形容词+名词） 
+　　（请尽量将单词写完整，除常用缩写，txt 、img）
+　　
+3，类 名
+   类名首字母均使用大写(Pascal命名方法)
+   class Chinese
+   {
+  
+   }
+4，文件名
+   在浏览器访问的文件全部使用小写单词，下划线隔开的文件名，且按照主谓结构命名如：baby_get.php 、uinfo_get.php
+5，说明：
+   a，常用动词：is/get/set/load/has/save/update/add/del/push/check/parse/join/send/sub
+   b, 命名格式：名词+形容词+动词，user_parent_get.php，user_baby_get.php (是否有疑惑)
+
+二、布局规范
+ 1,行之间
+   一段功能代码之间有空行
+   普通行与行之间不要有空行
+ 2,大括号
+  
+    1，放置在关键词下方的相同的位置：function、foreach、while 、do while
+    function checkError()
+    {
+
+    }
+   
+    foreach()
+    {
+ 
+    }
+ 
+    while()
+    {
+ 
+    }
+    do
+    {
+ 
+    }
+    while()
+    {
+
+    }	
+    switch(i)
+    {
+ 
+    }
+  
+    2,放置在关键字之后：if 判断句
+    if () {
+ 
+    } else if () {
+   
+    }
+ 3,空格
+ 
+  a, 赋值操作符、比较操作符、算术操作符、逻辑操作符、位域操作符，如“=”、“+=” “>=”、“<=”、“+”、“*”、“%”、“&&”、“||”、“<<”,“^”等操作符的前后无空格
+  b,一元运算符、地址运算符“!”、“~”、“++”、“--”、“&”等前后无空格。如$i++,
+  c,“->”， “::”操作符前后不加空格。如$this->add();
+
+  d,函数名与括号之间不要有空格,参数的逗号与后一个参数之间有一个空格。
+    function create_dirs($dir,	 $model = 0777)
+    {
+ 
+    }
+   
+    $uid=explode("\r\n", '');
+ 4，缩进使用tab键
+ 5, 数组括号
+    $user=array(
+	'name'	=>	'123',
+	'age'	=>	'34',
+	'baby'	=>	'342'
+    )
+三、注释规范（符合phpdoc标准）
+  1，单行注释 使用 “//” 
+  2, 多行注释 "/* */"
+  3, 文件、类、函数的头注释表明（eclipse中可自动提示）
+ 
+     /**
+      * @abstract 获取，可以指定配置	-> 摘要说明
+      * @param $key 关键字		-> 参数
+      * @author 作者			-> 作者
+      */
+ 
+  4，其它注意
+     修改代码同时修改相应的注释。
+     代码比较长时候在段末加 //end 便于阅读
+ 
+四、其它规范
+ 
+ 1， php中能使用单引号的地方尽量使用单引号
+ 
+ 2， $_GET['username']代替 $_GET[username]
