@@ -1,0 +1,39 @@
+﻿4.2.1 show()方法和hide()方法
+
+4.2.2 fadeIn()方法和fadeOut()方法
+改变元素透明度（淡入淡出）
+
+4.2.3 slide()方法和slideDown()方法
+改变元素的高度
+
+4.2.4 自定义动画方法animate()
+animate(params,speed,callback);
+params：一个包含样式属性及值的映射，比如{pro1:"value1",pro2:"value2"...}
+speed：速度参数，可选
+callback：动画完成时执行的函数，可选
+
+1、自定义简单动画
+$(this).animate({left:"500px"},3000);
+2、累加，累减动画
+$(this).animate({left:"+=50px"},300);
+3、多重动画
+$(this).animate({left:"50px",height:"50px"},3000);//同时变化
+$(this).animate({left:"50px"},3000);
+$(this).animate({height:"50px"},3000);
+4、综合动画
+
+4.2.5 动画回调函数
+$(this).animate({left:"50px",height:"50px"},function(){
+	$(this).css("border","1px solid blue");
+});
+
+4.2.6 停止动画和判断是否处于动画状态
+
+4.2.8 动画方法概况
+hide()和show() 同时修改高度、宽度和不透明度
+fadeIn()和fadeOut() 只改变不透明度
+slideUp()和slideDown() 只改变高度
+fadeTo() 只改变不透明度
+toggle()
+slideToggle()
+animate()

@@ -1,0 +1,33 @@
+﻿6.5.1
+load()方法  通常用来从web服务器上获取静态的文件
+1、载入html文档
+$("#resText").load("test.html");
+2、筛选载入的HTML的文档
+$("#resText").load("test.html .para");
+只加载test.html页面中class为“para”的内容
+3、传递方式
+无参数传递，get方式
+有参数传递，post方式
+$("#resText").load("test.html",{name:'rainy',age:"23"},function(){});
+4、回调参数
+无论ajax请求是否成功，只要请求完成就会被触发
+
+6.5.2
+$.get()方法和&.post()方法
+$.get(url,[, date],[, callback],[, type]);
+type(可选)，服务器返回内容的格式
+
+6.5.3
+$.getScript()
+加载js文件
+$.getScript('test.js',function(){
+	//回调函数
+});
+$.getJSON()
+加载JSON文件，与$.getScript()方法的用法相同
+在回调函数里处理返回的数据
+$.getJSON('test.json',function(data){
+	//data：返回的数据
+});
+
+6.5.4 $.ajax() jQuery最底层的Ajax实现

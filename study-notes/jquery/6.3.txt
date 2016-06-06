@@ -1,0 +1,20 @@
+﻿.end()	重新定位到上次的元素
+.siblings()
+
+jQuery对象转成DOM对象
+1、jQuery对象是一个数组对象，
+var $cr=$("#cr");	//jQuery对象
+var cr=$cr[0];	//DOM对象
+alert(cr.checked);
+2、另一种是jQuery本身提供的，通过get(index)方法得到相应的DOM对象
+var $cr=$("#cr");	//jQuery对象
+var cr=$cr.get[0];	//DOM对象
+alert(cr.checked);
+
+DOM对象转成jQuery对象
+var cr=document.getElementById("cr");
+var $cr=$(cr);
+
+解决jQuery和其它库的冲突
+
+

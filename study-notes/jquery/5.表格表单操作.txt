@@ -1,0 +1,8 @@
+﻿5.1.3复选框的应用
+全选
+$('[name=items]:checkbox').attr('checked',true);
+反选
+$('[name=items]:checkbox').each(function(){
+	this.checked=!this.checked;
+});
+

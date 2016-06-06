@@ -1,0 +1,8 @@
+﻿append()		向每个匹配的元素内部追加内容
+appendTo()	颠倒了append()
+prepend()	像每个匹配的元素内部前置内容
+prependTo()	颠倒了prepend()
+after()		在每个匹配的元素之后插入内容
+insertAfter()	颠倒了after()
+before()
+insertBefore()

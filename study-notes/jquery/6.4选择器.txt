@@ -1,0 +1,67 @@
+﻿基本选择器
+#id
+.class
+element
+*
+selector1,selector2..
+
+层次选择器
+$("div span") 选取div里所有的span元素（后代元素）后代可认为是包含的所有元素，而子元素只是包含一层的元素
+$("div>span") 选取div下元素名是span的子元素（子元素）
+$(".one+div") 选取class为one的下一个div元素		等价于	$(".one").next("div");
+$("#two~div") 选取id为two元素后面所有div兄弟元素	等价于	$("#two").nextAll("div");		$("#two").siblings("div");所有同辈的节点
+
+过滤选择器
+:first	第一个
+:last	最后一个
+:not(selector)	去除匹配的元素
+:even	索引是偶数的元素
+:odd	索引是奇数的元素
+:eq(1)	索引是1的元素（索引从0开始）
+:gt(2)	索引大于2的元素（不包括2）
+:lt(2)	索引小于2的元素（不包括2）
+:header	选取所有的标题元素<h1><h2>..
+:animated	选取当前正在执行动画的所有元素
+
+内容过滤选择器
+$("div:contains('我')")	选取文本包含“我”的div元素
+$("div:empty")	选取不包含子元素的div空元素
+$("div:has(p)")	选取含有p元素的div元素
+$("div:parent")	选取拥有子元素的（包括文本元素）的div元素
+
+可见性过滤选择器
+$("input:hidden")	选取隐藏的input元素
+$("div:visible")	选取可见的div元素
+
+属性过滤选择器
+
+子元素过滤选择器
+:nth-child(index/even/odd/equation)	index是从1开始 :eq(index)从0开始
+:first-child
+:last-child
+:only-child
+
+表单对象属性过滤器
+:enabled	选取所有可用元素
+:disabled	选取所有不可用元素
+:checked	选取所有被选中的元素
+:selected	选取所有被选中的元素
+
+表单选择器
+:input
+:text
+:password
+:radio
+:checkbox
+:submit
+:image
+:reset
+button
+:file
+:hidden
+
+选择器中含有空格的注意事项
+$(".test : hidden") class为test里的隐藏元素
+$(".test :hidden") 隐藏的class为test的元素
+
+

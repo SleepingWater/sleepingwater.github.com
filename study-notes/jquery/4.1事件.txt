@@ -1,0 +1,80 @@
+﻿4.1.1 加载DOM
+window.onload是网页中所有的元素（包括元素的所有关联文件）完全加载到浏览器后才执行
+$(document).ready()在DOM完全就绪时就可以被调用，所有例如图片的高度和宽度这样的属性此时不一定有效（简写$(function(){})）
+
+4.1.2 事件绑定
+.on()
+
+4.1.3 合成事件
+hover(enter,leave) 模拟光标悬停事件
+toggle()
+
+4.1.4 事件冒泡
+如果内部<span>，外部<div>都绑定了点击事件，只单击内部<span>元素，就会触发外部<div>绑定的事件，顺序为 <span> <div>
+
+事件冒泡已发的问题，在jQuery中stopPropagation()方法来停止事件冒泡
+$('span').bind("click",function(event){
+	var txt=$('#msg').html()+"<p>123</p>";
+	$('#msg').html(txt);
+	event.stopPropagation();//也可以写成return false
+});
+
+4.1.5 事件对象的属性
+（1）event.type()，获取到事件的类型（比如click）
+（2）event.preventDefault()，阻止默认的事件行为
+（3）event.stopPropagation()，阻止事件的冒泡
+（4）event.target()，获取触发事件的元素
+（5）event.relatedTarget()，对于mouseover事件来说，该属性是鼠标指针移到目标节点上时所离开的那个节点。对于mouseout事件来说，该属性是离开目标时，鼠标指针进入的节点。对于其他类型的事件来说，这个属性没有用。
+（6）event.pageX()/event.pageY()，获取光标相对于页面的x坐标和y坐标
+（7）event.which()，在鼠标事件中获取鼠标的左、中、右键；在键盘事件中获取键盘的按键
+（8）event.metaKey()，针对不同浏览器对键盘中的Ctrl按键解释不同，jQuery进行了封装，event.metaKey()方法为键盘事件获取Ctrl按键
+（9）event.originalEvent()，指向原始的事件对象
+
+4.1.6
+移除事件 unbind()
+unbind(事件类型，要移除的函数)
+
+4.1.7
+模拟操作
+$("#btn").trigger("click")等效于$("#btn").click();
+触发自定义名称的事件
+
+$("#btn").bind("myClick",function(event,msg1,msg2){
+	console.log('我的函数');
+	console.log(msg1+msg2);
+});
+$("#btn").trigger("myClick","我的","函数");//可以带参数
+
+4.1.8
+其他方法
+
+1、绑定多个事件类型
+$("div").bind("mouseover mouseout",function(){
+	$(this).toggleClass("over");
+})
+滑入div时class切换为over，离开div时，class切换为原先的值
+
+2、添加事件命名空间，便于管理
+$("div").bind("click.plugin",function(){
+	console.log("click.plugin");
+});
+$("div").bind("mouseover.plugin",function(){
+	console.log("mouseover.plugin");
+});
+$("div").bind("dblclick,function(){
+	console.log("dblclick");
+});
+$("#btn").click(function(){
+	$("div").unbind(".plugin");等效于$("div").unbind("click").unbind("mouseover");
+});
+
+3、相同事件名称，不同命名空间执行方法
+$("div").bind("click.plugin",function(){
+	console.log("click.plugin");
+});
+$("div").bind("click",function(){
+	console.log("click");
+});
+$("#btn").click(function(){
+	$("#div").trigger("click!");//感叹号的作用是匹配所有不包含命名空间的click方法，去掉感叹号，两个都触发
+});
